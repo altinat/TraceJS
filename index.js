@@ -12,7 +12,7 @@ var fs = require('fs');
 var path = require('path');
 //var download = require('download-file')
 //var gify = require('gify');
-const langs = ["eng", "ru"]
+const langs = ["tha", "eng"]
 const img_formats = ['png', 'jpeg', 'jpg'];
 
 var con = mysql.createConnection({
@@ -50,7 +50,7 @@ con.connect(function (err) {
 					break
 				default:
 					{
-						client.user.setActivity('Reset work channel, new DB.', {
+						client.user.setActivity('คนทรงเจ้า', {
 							type: 'WATCHING'
 						});
 					}
@@ -69,14 +69,14 @@ con.connect(function (err) {
 		client.on('guildCreate', (guild) => {
 			guild.channels.find((ch) => ch.position == 0 || ch.type == 'text').send({
 				embed: {
-					title: `Hi guys :D`,
-					description: 'To set work channnel: **+setchannel #chat_name**\n' +
-						'example: +setchannel ' +
+					title: `ดี้จ้า`,
+					description: 'ตั้งห้องที่ใช้ค้น: **+setchannel #chat_name**\n' +
+						'เช่น: +setchannel ' +
 						guild.channels.find((ch) => ch.position == 0 || ch.type == 'text') +
-						'\nIf you wonna add me to another server: [Click here](https://discordapp.com/oauth2/authorize?client_id=559247918280867848&scope=bot&permissions=52288)',
+						'\nหากอยากใช้ฉันในเซิร์ฟเวอร์อื่นล่ะก็โปรดใช้ลิงก์นี้แอดฉัน: [คลิกที่นี่](https://discordapp.com/oauth2/authorize?client_id=559247918280867848&scope=bot&permissions=52288)',
 					footer: {
 						icon_url: client.user.displayAvatarURL,
-						text: `Ony admins can use that command!`
+						text: `มีแค่ผู้ดูแลเท่านั้นนะที่ใช้คำสั่งได้น่ะ!`
 					}
 				}
 			});
@@ -130,7 +130,7 @@ con.connect(function (err) {
 							msg.react('👌');
 						})
 					} else {
-						msg.channel.send(`Available languages: **${langs.join(',')}**. Example: **+setlang ru**`)
+						msg.channel.send(`ภาษาที่รองรับ: **${langs.join(',')}** เช่น: **+setlang eng**`)
 					}
 				}
 			}
@@ -138,7 +138,7 @@ con.connect(function (err) {
 				if (msg.member.hasPermission('KICK_MEMBERS') || msg.author.id == '449924162920906753') {
 					if (cooldowns[msg.guild.id])
 						return msg.channel.send(
-							`This command is on cooldown on this server. Please wait **${cooldowns[msg.guild.id]} sec.**`
+							`คำสั่งนี้กำลังคูลดาวน์บนเซิร์ฟเวอร์นี้ โปรดรอ **${cooldowns[msg.guild.id]} วินาที**`
 						);
 					cooldowns[msg.guild.id] = 20;
 					console.log(cooldowns);
@@ -147,7 +147,7 @@ con.connect(function (err) {
 						return msg.channel.send({
 							embed: {
 								color: 0xff0000,
-								description: `:interrobang: Syntax: **+setchannel ${msg.guild.channels.find((ch) => ch.position == 1 || ch.type == 'text')}**`
+								description: `หืม? ไวยากรณ์: **+setchannel ${msg.guild.channels.find((ch) => ch.position == 1 || ch.type == 'text')}**`
 							}
 						});
 					chn = chn.replace(/</gi, '').replace(/>/gi, '').replace(/#/gi, '');
@@ -155,17 +155,17 @@ con.connect(function (err) {
 						return msg.channel.send({
 							embed: {
 								color: 0xff0000,
-								description: `:interrobang: Syntax: **+setchannel ${msg.guild.channels.find(
+								description: `หืม? ไวยากรณ์: **+setchannel ${msg.guild.channels.find(
 									(ch) => ch.position == 1 || ch.type == 'text'
 								)}**`
 							}
 						});
 					if (!guilds_settings[msg.guild.id]) {
-						con.query("INSERT INTO `guilds` VALUES ('" + msg.guild.id + "','" + chn + "','eng')", (err) => {
+						con.query("INSERT INTO `guilds` VALUES ('" + msg.guild.id + "','" + chn + "','tha')", (err) => {
 							if (err) return console.log(err)
 							guilds_settings[msg.guild.id] = [];
 							guilds_settings[msg.guild.id][0] = chn;
-							guilds_settings[msg.guild.id][1] = "eng";
+							guilds_settings[msg.guild.id][1] = "tha";
 						});
 
 					} else {
@@ -173,17 +173,17 @@ con.connect(function (err) {
 							if (err) return console.log(err)
 							guilds_settings[msg.guild.id] = [];
 							guilds_settings[msg.guild.id][0] = chn;
-							guilds_settings[msg.guild.id][1] = "eng";
+							guilds_settings[msg.guild.id][1] = "tha";
 						});
 					}
 					msg.react('👌');
 					msg.guild.channels
 						.find((ch) => ch.id == chn)
 						.send(
-							'__**<:animePodsos:559025418221518850>ANIME-HUNTER IS HERE, GIMME UR ANIME SCREENSHOTS<:animePodsos:559025418221518850>**__ '
+							'ได้ตั้งค่าห้องทำงานแล้ว! ดาหน้าเข้ามาเลย!'
 						);
 				} else {
-					msg.channel.send(`You don't have enough permissions.`);
+					msg.channel.send(`เจ้าไม่มีสิทธิ์`);
 				}
 			}
 			if (!guilds_settings[msg.guild.id]) return
@@ -217,7 +217,7 @@ con.connect(function (err) {
 								return res.json();
 							})
 							.then((result) => {
-								if (result.limit == 0) return msg.channel.send(`Ugh.. i'm overwhelmed with requests, please wait for **${result.limit_ttl}** sec.`);
+								if (result.limit == 0) return msg.channel.send(`เหวอ... รีเควสกันมาเยอะแบบนี้เค้าไม่ไหวอะ ขอเวลาพัก **${result.limit_ttl}** วินาทีนะ`);
 								if (!result.docs) return;
 								var e = result.docs.sort((a, b) => { // Sort array from highest similarity to lowest
 									return b.similarity - a.similarity
@@ -240,7 +240,44 @@ con.connect(function (err) {
 								//	if (err) throw err
 								//	gify(`./videos/${e.mal_id}.mp4`, `./gifs/${e.mal_id}.gif`, gif_options, function (err) {
 								//		if (err) throw err;
-								if (guilds_settings[msg.guild.id][1] == "eng") {
+								if (guilds_settings[msg.guild.id][1] == "tha") {
+									msg.channel.send({
+										//files: [new Discord.Attachment(`./gifs/${e.mal_id}.gif`, `${e.mal_id}.gif`)],
+										embed: {
+											title: `ไงล่ะ! เจอแล้ว ฉันเก่งไหม`,
+											color: 7589871,
+											footer: {
+												icon_url: msg.author.displayAvatarURL,
+												text: `รีเควสโดย ${msg.author.username}`
+											},
+											thumbnail: {
+												url: `https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
+											},
+											description: `ชื่อเรื่อง: **${e.title_romaji}**\n` +
+												`ความเป็นไปได้: **${e.similarity.toFixed(4) * 100}%**\n` +
+												`ตอนที่: **${e.episode}**\n` +
+												`ณ เวลา: **${~~(e.at / 60)}:${~~(e.at % 60)}**\n` +
+												`MyAnimeList: [Click!](https://myanimelist.net/anime/${e.mal_id})\n` +
+												`วิดีโอ: [Click!](${video_url})\n` +
+												`โป๊ปลือย: ${e.is_adult ? '**แม่นแล้ว!**' : '**ไม่ใช่อะ 😫**'}`,
+											image: {
+												url: `https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
+											},
+											fields: [{
+												name: "ผลการค้นหาอื่น:",
+												value: other_results.length == 0 ? "**ไม่มีอะ 🐥**" : other_results
+											}]
+										},
+									})
+										.then(sendedmsg => {
+											//	fs.unlink(`./gifs/${e.mal_id}.gif`, () => console.log(`deleted ${e.mal_id}.gif`));
+											//	fs.unlink(`./videos/${e.mal_id}.mp4`, () => console.log(`deleted ${e.mal_id}.mp4`));
+											sendedmsg.react('👌');
+											sendedmsg.react('⛔');
+											var msg_author = msg.author.id;
+											msg_authors[msg_author] = [msg.guild.id, msg.channel.id, sendedmsg.id];
+										})
+								} else {
 									msg.channel.send({
 										//files: [new Discord.Attachment(`./gifs/${e.mal_id}.gif`, `${e.mal_id}.gif`)],
 										embed: {
@@ -266,43 +303,6 @@ con.connect(function (err) {
 											fields: [{
 												name: "Other results:",
 												value: other_results.length == 0 ? "**No results 🐥**" : other_results
-											}]
-										},
-									})
-										.then(sendedmsg => {
-											//	fs.unlink(`./gifs/${e.mal_id}.gif`, () => console.log(`deleted ${e.mal_id}.gif`));
-											//	fs.unlink(`./videos/${e.mal_id}.mp4`, () => console.log(`deleted ${e.mal_id}.mp4`));
-											sendedmsg.react('👌');
-											sendedmsg.react('⛔');
-											var msg_author = msg.author.id;
-											msg_authors[msg_author] = [msg.guild.id, msg.channel.id, sendedmsg.id];
-										})
-								} else {
-									msg.channel.send({
-										//files: [new Discord.Attachment(`./gifs/${e.mal_id}.gif`, `${e.mal_id}.gif`)],
-										embed: {
-											title: `Вот что я нашёл!`,
-											color: 7589871,
-											footer: {
-												icon_url: msg.author.displayAvatarURL,
-												text: `Запрос от: ${msg.author.username}, Автор: wnm#1663`
-											},
-											thumbnail: {
-												url: `https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
-											},
-											description: `Название: **${e.title_romaji}**\n` +
-												`Сходство: **${e.similarity.toFixed(4) * 100}%**\n` +
-												`Серия: **${e.episode}**\n` +
-												`Время: **${~~(e.at / 60)}:${~~(e.at % 60)}**\n` +
-												`MyAnimeList: [Click!](https://myanimelist.net/anime/${e.mal_id})\n` +
-												`Видео: [Click!](${video_url})\n` +
-												`18+: ${e.is_adult ? '**Да! Да! Да!**' : '**Нет 😫**'}`,
-											image: {
-												url: `https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
-											},
-											fields: [{
-												name: "Другие результаты:",
-												value: other_results.length == 0 ? "**Нет других результатов 🐥**" : other_results
 											}]
 										},
 									})
