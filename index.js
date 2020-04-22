@@ -258,7 +258,7 @@ con.connect(function (err) {
 												`ตอนที่: **${e.episode} **\n` +
 												`ณ เวลา: **${~~(e.at / 60)}:${~~(e.at % 60)} **\n` +
 												`MyAnimeList: [คลิก!](https://myanimelist.net/anime/${e.mal_id})\n` +
-												`**วิดีโอ: [คลิก!](${video_url})\n` +
+												`วิดีโอ: [คลิก!](${video_url})\n` +
 												`โป๊เปลือย: ${e.is_adult ? '**แม่นแล้ว! 😏 **' : '**ไม่ใช่อะ 😫 **'}`,
 											image: {
 												url: `https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
