@@ -43,7 +43,7 @@ con.connect(function (err) {
 			switch (rnd) {
 				case 1:
 					{
-						client.user.setActivity('+setchannel', {
+						client.user.setActivity('คนเล่นเจ้า', {
 							type: 'WATCHING'
 						});
 					}
@@ -253,19 +253,19 @@ con.connect(function (err) {
 											thumbnail: {
 												url: `https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
 											},
-											description: `ชื่อเรื่อง: **${e.title_romaji}**\n` +
-												`ความเป็นไปได้: **${e.similarity.toFixed(4) * 100}%**\n` +
-												`ตอนที่: **${e.episode}**\n` +
-												`ณ เวลา: **${~~(e.at / 60)}:${~~(e.at % 60)}**\n` +
-												`MyAnimeList: [Click!](https://myanimelist.net/anime/${e.mal_id})\n` +
-												`วิดีโอ: [Click!](${video_url})\n` +
-												`โป๊ปลือย: ${e.is_adult ? '**แม่นแล้ว!**' : '**ไม่ใช่อะ 😫**'}`,
+											description: `ชื่อเรื่อง: ${e.title_romaji}\n` +
+												`ความเป็นไปได้: ${e.similarity.toFixed(4) * 100}%\n` +
+												`ตอนที่: ${e.episode}\n` +
+												`ณ เวลา: ${~~(e.at / 60)}:${~~(e.at % 60)}\n` +
+												`MyAnimeList: [คลิก!](https://myanimelist.net/anime/${e.mal_id})\n` +
+												`วิดีโอ: [คลิก!](${video_url})\n` +
+												`โป๊เปลือย: ${e.is_adult ? 'แม่นแล้ว! :Yeahboi:' : 'ไม่ใช่อะ 😫'}`,
 											image: {
 												url: `https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
 											},
 											fields: [{
 												name: "ผลการค้นหาอื่น:",
-												value: other_results.length == 0 ? "**ไม่มีอะ 🐥**" : other_results
+												value: other_results.length == 0 ? "ไม่มีอะ 🐥" : other_results
 											}]
 										},
 									})
@@ -290,19 +290,19 @@ con.connect(function (err) {
 											thumbnail: {
 												url: `https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
 											},
-											description: `Anime: **${e.title_romaji}**\n` +
-												`Similarity: **${e.similarity.toFixed(4) * 100}%**\n` +
-												`Episode: **${e.episode}**\n` +
-												`Timestamp: **${~~(e.at / 60)}:${~~(e.at % 60)}**\n` +
+											description: `Anime: ${e.title_romaji}\n` +
+												`Similarity: ${e.similarity.toFixed(4) * 100}%\n` +
+												`Episode: ${e.episode}\n` +
+												`Timestamp: ${~~(e.at / 60)}:${~~(e.at % 60)}\n` +
 												`MyAnimeList: [Click!](https://myanimelist.net/anime/${e.mal_id})\n` +
 												`Video: [Click!](${video_url})\n` +
-												`NSFW: ${e.is_adult ? '**Yes! Yes! Yes!**' : '**No 😫**'}`,
+												`NSFW: ${e.is_adult ? 'Yes! Yes! Yes! :Yeahboi:' : 'No 😫'}`,
 											image: {
 												url: `https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
 											},
 											fields: [{
 												name: "Other results:",
-												value: other_results.length == 0 ? "**No results 🐥**" : other_results
+												value: other_results.length == 0 ? "No results 🐥" : other_results
 											}]
 										},
 									})
