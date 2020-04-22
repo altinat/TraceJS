@@ -261,8 +261,7 @@ con.connect(function (err) {
 												`วิดีโอ: [คลิก!](${video_url})\n` +
 												`โป๊เปลือย: ${e.is_adult ? 'แม่นแล้ว! 😏' : 'ไม่ใช่อะ 😫'}`,
 											image: {
-												url: `${video_url}\n
-												https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
+												url: `${video_url}`
 											},
 											fields: [{
 												name: "ผลการค้นหาอื่น:",
@@ -299,8 +298,7 @@ con.connect(function (err) {
 												`Video: [Click!](${video_url})\n` +
 												`NSFW: ${e.is_adult ? 'Yes! Yes! Yes! 😏' : 'No 😫'}`,
 											image: {
-												url: `${video_url}\n
-												https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
+												url: `${video_url}`
 											},
 											fields: [{
 												name: "Other results:",
