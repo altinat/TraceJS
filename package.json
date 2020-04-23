@@ -1,6 +1,6 @@
 {
   "name": "TraceJS",
-  "version": "2.3",
+  "version": "2.3.0",
   "description": "Discord bot to search anime by screenshots with trace.moe api",
   "main": "index.js",
   "scripts": {
