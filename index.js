@@ -222,20 +222,7 @@ con.connect(function (err) {
 								var e = result.docs.sort((a, b) => { // Sort array from highest similarity to lowest
 									return b.similarity - a.similarity
 								})[0];
-								var at_time1 = result.docs.map((el, i) => {
-									if ((e.at / 60) < 10) { 
-										return `${~~(e.at / 60)}`
-									} else { 
-										return `0${~~(e.at / 60)}`
-									};
-								});
-								var at_time2 = result.docs.map((el, i) => {
-									if ((e.at % 60) < 10) { 
-										return `${~~(e.at % 60)}`
-									} else { 
-										return `0${~~(e.at % 60)}`
-									};
-								});
+								
 								var video_url = `https://media.trace.moe/video/${e.anilist_id}/${encodeURIComponent(e.filename)}?t=${e.at}&token=${e.tokenthumb}`.replace(/[)]/g, '%29')
 								var other_results = result.docs.map((el, i) => {
 									if (e.mal_id != el.mal_id) return `[${el.title_romaji}](https://myanimelist.net/anime/${el.mal_id})`;
@@ -272,10 +259,10 @@ con.connect(function (err) {
 												`ชื่อภาษาญี่ปุ่น: **${e.title} **\n` +
 												`ซีซันที่ฉาย: **${e.season} **\n` +
 												`ตอนที่: **${e.episode} **\n` +
-												`ณ เวลา: **${at_time1}:${at_time2} **\n` +
-												`MyAnimeList: [คลิก!](https://myanimelist.net/anime/${e.mal_id}) AniList: [คลิก!](https://anilist.co/anime/${e.anilist_id})\n` +
-												`โป๊เปลือย: ${e.is_adult ? '**แม่นแล้ว! 😏 **' : '**ไม่ใช่อะ 😫 **'}` +
-												`วิดีโอ: [คลิก!](${video_url})\n`,
+												`ณ เวลา: **${~~(e.at / 60)}:${~~(e.at % 60)} **\n` +
+												`[MyAnimeList](https://myanimelist.net/anime/${e.mal_id}) : [AniList](https://anilist.co/anime/${e.anilist_id})\n` +
+												`โป๊เปลือย: ${e.is_adult ? '**แม่นแล้ว! 😏 **' : '**ไม่ใช่อะ 😫 **'}\n` +
+												`วิดีโอ: [คลิก!](${video_url})`,
 											image: {
 												url: `https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
 											},
@@ -312,9 +299,9 @@ con.connect(function (err) {
 												`Season: **${e.season} **\n` +
 												`Episode: **${e.episode} **\n` +
 												`Timestamp: **${at_time1}:${at_time2} **\n` +
-												`MyAnimeList: [Click!](https://myanimelist.net/anime/${e.mal_id}) AniList: [Click!](https://anilist.co/anime/${e.anilist_id})\n` +
-												`NSFW: ${e.is_adult ? '**แม่นแล้ว! 😏 **' : '**ไม่ใช่อะ 😫 **'}` +
-												`Video: [Click!](${video_url})\n`,
+												`[MyAnimeList](https://myanimelist.net/anime/${e.mal_id}) : [AniList](https://anilist.co/anime/${e.anilist_id})\n` +
+												`NSFW: ${e.is_adult ? '**Yeahboi! 😏 **' : '**Nope 😫 **'}\n` +
+												`Video: [Click!](${video_url})`,
 											image: {
 												url: `https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
 											},
