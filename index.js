@@ -73,7 +73,7 @@ con.connect(function (err) {
 					description: 'ตั้งห้องที่ใช้ค้น: **+setchannel #chat_name**\n' +
 						'เช่น: +setchannel ' +
 						guild.channels.find((ch) => ch.position == 0 || ch.type == 'text') +
-						'\nหากอยากใช้ฉันในเซิร์ฟเวอร์อื่นล่ะก็โปรดใช้ลิงก์นี้แอดฉัน: [คลิกที่นี่](https://discordapp.com/oauth2/authorize?client_id=559247918280867848&scope=bot&permissions=52288)',
+						'\nหากอยากใช้ฉันในเซิร์ฟเวอร์อื่นล่ะก็โปรดใช้ลิงก์นี้แอดฉัน: [คลิกที่นี่](https://discordapp.com/oauth2/authorize?client_id=702082692744872016&scope=bot&permissions=52288)',
 					footer: {
 						icon_url: client.user.displayAvatarURL,
 						text: `มีแค่ผู้ดูแลเท่านั้นนะที่ใช้คำสั่งได้น่ะ!`
