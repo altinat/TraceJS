@@ -202,18 +202,12 @@ con.connect(function (err) {
 				if (img_formats.indexOf(urlToArr[urlToArr.length - 1]) == -1) return;
 				Jimp.read(url, function (err, img) {
 					if (err) return;
-					img.resize(720, 480).getBase64(Jimp.AUTO, function (e, img64) {
+					img.getBase64(Jimp.AUTO, function (e, img64) {
 						if (e) return;
-						var canvas = document.createElement("canvas");
-						canvas.width = img.naturalWidth;
-						canvas.height = img.naturalHeight;
-						var ctx = canvas.getContext("2d");
-						ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-						fetch(`https://trace.moe/api/search`, {
+						fetch(`https://trace.moe/api/search${config.trace_moe_token ? '?token=' + config.trace_moe_token : ""}`, {
 							method: 'POST',
 							body: JSON.stringify({
-								image: canvas.toDataURL("image/jpeg", 0.8)
+								image: img64
 							}),
 							headers: {
 								'Content-Type': 'application/json'
