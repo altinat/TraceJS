@@ -197,7 +197,11 @@ con.connect(function (err) {
 				attch = msg.content;
 			}
 			if (attch) {
-				msg.channel.send(`Finding`);
+				findmsg = await msg.channel.send(`Finding`);
+				setTimeout(() => {
+					// Edit msg 20 seconds later
+					findmsg.delete('Hello');
+				}, 20000);
 				var url = attch.url ? attch.url : attch;
 				var urlToArr = url.toLowerCase().split('.');
 				if (img_formats.indexOf(urlToArr[urlToArr.length - 1]) == -1) return;
