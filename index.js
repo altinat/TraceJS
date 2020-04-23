@@ -241,7 +241,7 @@ con.connect(function (err) {
 								//	gify(`./videos/${e.mal_id}.mp4`, `./gifs/${e.mal_id}.gif`, gif_options, function (err) {
 								//		if (err) throw err;
 								if (guilds_settings[msg.guild.id][1] == "tha") {
-										msg.channel.send("Finding").then((postmsg) => {postmsg.edit({
+										msg.channel.send({
 										//files: [new Discord.Attachment(`./gifs/${e.mal_id}.gif`, `${e.mal_id}.gif`)],
 										embed: {
 											title: `ไงล่ะ! เจอแล้ว ฉันเก่งไหม`,
@@ -271,7 +271,7 @@ con.connect(function (err) {
 												value: other_results.length == 0 ? "ไม่มีอะ 🐥" : other_results
 											}]
 										},
-									})})
+									})
 										.then(sendedmsg => {
 											//	fs.unlink(`./gifs/${e.mal_id}.gif`, () => console.log(`deleted ${e.mal_id}.gif`));
 											//	fs.unlink(`./videos/${e.mal_id}.mp4`, () => console.log(`deleted ${e.mal_id}.mp4`));
@@ -281,7 +281,7 @@ con.connect(function (err) {
 											msg_authors[msg_author] = [msg.guild.id, msg.channel.id, sendedmsg.id];
 										})
 								} else {
-									msg.channel.send("Finding").then((postmsg) => {postmsg.edit({
+									msg.channel.send({
 										//files: [new Discord.Attachment(`./gifs/${e.mal_id}.gif`, `${e.mal_id}.gif`)],
 										embed: {
 											title: `That's what you have been waiting for!`,
@@ -311,7 +311,7 @@ con.connect(function (err) {
 												value: other_results.length == 0 ? "No results 🐥" : other_results
 											}]
 										},
-									})})
+									})
 										.then(sendedmsg => {
 											//	fs.unlink(`./gifs/${e.mal_id}.gif`, () => console.log(`deleted ${e.mal_id}.gif`));
 											//	fs.unlink(`./videos/${e.mal_id}.mp4`, () => console.log(`deleted ${e.mal_id}.mp4`));
