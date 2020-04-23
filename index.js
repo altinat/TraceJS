@@ -312,9 +312,9 @@ con.connect(function (err) {
 												`Season: **${e.season} **\n` +
 												`Episode: **${e.episode} **\n` +
 												`Timestamp: **${at_time1}:${at_time2} **\n` +
-												`MyAnimeList: [คลิก!](https://myanimelist.net/anime/${e.mal_id}) AniList: [คลิก!](https://anilist.co/anime/${e.anilist_id})\n` +
+												`MyAnimeList: [Click!](https://myanimelist.net/anime/${e.mal_id}) AniList: [Click!](https://anilist.co/anime/${e.anilist_id})\n` +
 												`NSFW: ${e.is_adult ? '**แม่นแล้ว! 😏 **' : '**ไม่ใช่อะ 😫 **'}` +
-												`Video: [คลิก!](${video_url})\n`,: msg.author.displayAvatarURL,
+												`Video: [Click!](${video_url})\n`,
 											image: {
 												url: `https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
 											},
