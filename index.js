@@ -249,8 +249,8 @@ con.connect(function (err) {
 											footer: {
 												icon_url: msg.author.displayAvatarURL,
 												text: `รีเควสโดย ${msg.author.username} \n` +
-												`ความเป็นไปได้: **${e.similarity.toFixed(4) * 100}% **` +
-												`ไฟล์: **${e.filename} **`
+												`ความเป็นไปได้: ${e.similarity.toFixed(4) * 100}% \n` +
+												`ไฟล์: ${e.filename}`
 											},
 											thumbnail: {
 												url: `https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
@@ -289,8 +289,8 @@ con.connect(function (err) {
 											footer: {
 												icon_url: msg.author.displayAvatarURL,
 												text: `Requested by ${msg.author.username} \n` +
-												`Similarity: **${e.similarity.toFixed(4) * 100}% **` +
-												`Filename: **${e.filename} **`
+												`Similarity: ${e.similarity.toFixed(4) * 100}%\n` +
+												`Filename: ${e.filename}`
 											},
 											thumbnail: {
 												url: `https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
