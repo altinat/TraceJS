@@ -204,10 +204,17 @@ con.connect(function (err) {
 					if (err) return;
 					img.resize(720, 480).getBase64(Jimp.AUTO, function (e, img64) {
 						if (e) return;
+						var img = document.querySelector("img"); // select image from DOM
+						var canvas = document.createElement("canvas");
+						canvas.width = img.naturalWidth;
+						canvas.height = img.naturalHeight;
+						var ctx = canvas.getContext("2d");
+						ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
 						fetch(`https://trace.moe/api/search`, {
 							method: 'POST',
 							body: JSON.stringify({
-								image: img64
+								image: canvas.toDataURL("image/jpeg", 0.8)
 							}),
 							headers: {
 								'Content-Type': 'application/json'
