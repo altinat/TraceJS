@@ -272,7 +272,7 @@ con.connect(function (err) {
 												value: other_results.length == 0 ? "ไม่มีอะ 🐥" : other_results
 											}]
 										},
-									})
+									})})
 										.then(sendedmsg => {
 											//	fs.unlink(`./gifs/${e.mal_id}.gif`, () => console.log(`deleted ${e.mal_id}.gif`));
 											//	fs.unlink(`./videos/${e.mal_id}.mp4`, () => console.log(`deleted ${e.mal_id}.mp4`));
@@ -312,7 +312,7 @@ con.connect(function (err) {
 												value: other_results.length == 0 ? "No results 🐥" : other_results
 											}]
 										},
-									})
+									})})
 										.then(sendedmsg => {
 											//	fs.unlink(`./gifs/${e.mal_id}.gif`, () => console.log(`deleted ${e.mal_id}.gif`));
 											//	fs.unlink(`./videos/${e.mal_id}.mp4`, () => console.log(`deleted ${e.mal_id}.mp4`));
