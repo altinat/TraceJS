@@ -197,6 +197,7 @@ con.connect(function (err) {
 				attch = msg.content;
 			}
 			if (attch) {
+				msg.channel.send(`Finding (เดี๋ยวจะแก้ทีหลัง)`);
 				var url = attch.url ? attch.url : attch;
 				var urlToArr = url.toLowerCase().split('.');
 				if (img_formats.indexOf(urlToArr[urlToArr.length - 1]) == -1) return;
