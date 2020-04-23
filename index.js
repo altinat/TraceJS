@@ -200,7 +200,7 @@ con.connect(function (err) {
 				findmsg = await msg.channel.send(`Finding`);
 				setTimeout(() => {
 					// Edit msg 20 seconds later
-					findmsg.delete('Hello');
+					findmsg.delete;
 				}, 20000);
 				var url = attch.url ? attch.url : attch;
 				var urlToArr = url.toLowerCase().split('.');
