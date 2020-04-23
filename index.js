@@ -204,7 +204,7 @@ con.connect(function (err) {
 					if (err) return;
 					img.getBase64(Jimp.AUTO, function (e, img64) {
 						if (e) return;
-						fetch(`https://trace.moe/api/search${config.trace_moe_token ? '?token=' + config.trace_moe_token : ""}`, {
+						fetch(`https://trace.moe/api/search`, {
 							method: 'POST',
 							body: JSON.stringify({
 								image: img64
@@ -222,6 +222,20 @@ con.connect(function (err) {
 								var e = result.docs.sort((a, b) => { // Sort array from highest similarity to lowest
 									return b.similarity - a.similarity
 								})[0];
+								var at_time1 = result.docs.map((el, i) => {
+									if ((e.at / 60) < 10) { 
+										return `${~~(e.at / 60)}`
+									} else { 
+										return `0${~~(e.at / 60)}`
+									};
+								});
+								var at_time2 = result.docs.map((el, i) => {
+									if ((e.at % 60) < 10) { 
+										return `${~~(e.at % 60)}`
+									} else { 
+										return `0${~~(e.at % 60)}`
+									};
+								});
 								var video_url = `https://media.trace.moe/video/${e.anilist_id}/${encodeURIComponent(e.filename)}?t=${e.at}&token=${e.tokenthumb}`.replace(/[)]/g, '%29')
 								var other_results = result.docs.map((el, i) => {
 									if (e.mal_id != el.mal_id) return `[${el.title_romaji}](https://myanimelist.net/anime/${el.mal_id})`;
@@ -248,18 +262,20 @@ con.connect(function (err) {
 											color: 7589871,
 											footer: {
 												icon_url: msg.author.displayAvatarURL,
-												text: `รีเควสโดย ${msg.author.username}`
+												text: `รีเควสโดย ${msg.author.username} \n` +
+												`ความเป็นไปได้: **${e.similarity.toFixed(4) * 100}% **`
 											},
 											thumbnail: {
 												url: `https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
 											},
-											description: `ชื่อเรื่อง: **${e.title_romaji} **\n` +
-												`ความเป็นไปได้: **${e.similarity.toFixed(4) * 100}% **\n` +
+											description: `ชื่อโรมาจิ: **${e.title_romaji} **\n` +
+												`ชื่อภาษาญี่ปุ่น: **${e.title} **\n` +
+												`ซีซันที่ฉาย: **${e.season} **\n` +
 												`ตอนที่: **${e.episode} **\n` +
-												`ณ เวลา: **${~~(e.at / 60)}:${~~(e.at % 60)} **\n` +
-												`MyAnimeList: [คลิก!](https://myanimelist.net/anime/${e.mal_id})\n` +
-												`วิดีโอ: [คลิก!](${video_url})\n` +
-												`โป๊เปลือย: ${e.is_adult ? '**แม่นแล้ว! 😏 **' : '**ไม่ใช่อะ 😫 **'}`,
+												`ณ เวลา: **${at_time1}:${at_time2} **\n` +
+												`MyAnimeList: [คลิก!](https://myanimelist.net/anime/${e.mal_id}) AniList: [คลิก!](https://anilist.co/anime/${e.anilist_id})\n` +
+												`โป๊เปลือย: ${e.is_adult ? '**แม่นแล้ว! 😏 **' : '**ไม่ใช่อะ 😫 **'}` +
+												`วิดีโอ: [คลิก!](${video_url})\n`,
 											image: {
 												url: `https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
 											},
@@ -285,18 +301,20 @@ con.connect(function (err) {
 											color: 7589871,
 											footer: {
 												icon_url: msg.author.displayAvatarURL,
-												text: `Requested by ${msg.author.username}`
+												text: `Requested by ${msg.author.username} \n` +
+												`Similarity: **${e.similarity.toFixed(4) * 100}% **`
 											},
 											thumbnail: {
 												url: `https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
 											},
-											description: `Anime: **${e.title_romaji} **\n` +
-												`Similarity: **${e.similarity.toFixed(4) * 100}% **\n` +
-												`Episode: **${e.episode}\n` +
-												`Timestamp: **${~~(e.at / 60)}:${~~(e.at % 60)} **\n` +
-												`MyAnimeList: [Click!](https://myanimelist.net/anime/${e.mal_id})\n` +
-												`Video: [Click!](${video_url})\n` +
-												`NSFW: ${e.is_adult ? '**Yes! Yes! Yes! 😏 **' : '**No 😫 **'}`,
+											description: `Romaji Name: **${e.title_romaji} **\n` +
+												`Japanness Name: **${e.title} **\n` +
+												`Season: **${e.season} **\n` +
+												`Episode: **${e.episode} **\n` +
+												`Timestamp: **${at_time1}:${at_time2} **\n` +
+												`MyAnimeList: [คลิก!](https://myanimelist.net/anime/${e.mal_id}) AniList: [คลิก!](https://anilist.co/anime/${e.anilist_id})\n` +
+												`NSFW: ${e.is_adult ? '**แม่นแล้ว! 😏 **' : '**ไม่ใช่อะ 😫 **'}` +
+												`Video: [คลิก!](${video_url})\n`,: msg.author.displayAvatarURL,
 											image: {
 												url: `https://trace.moe/thumbnail.php?anilist_id=${e.anilist_id}&file=${encodeURIComponent(e.filename)}&t=${e.at}&token=${e.tokenthumb}`
 											},
