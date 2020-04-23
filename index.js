@@ -197,7 +197,7 @@ con.connect(function (err) {
 				attch = msg.content;
 			}
 			if (attch) {
-				fmsg = await msg.channel.send(`test finding`);
+				fmsg = msg.channel.send(`test finding`);
 				var url = attch.url ? attch.url : attch;
 				var urlToArr = url.toLowerCase().split('.');
 				if (img_formats.indexOf(urlToArr[urlToArr.length - 1]) == -1) return;
