@@ -197,7 +197,7 @@ con.connect(function (err) {
 				attch = msg.content;
 			}
 			if (attch) {
-				msg.channel.send(`Finding (เดี๋ยวจะแก้ทีหลัง)`);
+				msg.channel.send(`Finding`);
 				var url = attch.url ? attch.url : attch;
 				var urlToArr = url.toLowerCase().split('.');
 				if (img_formats.indexOf(urlToArr[urlToArr.length - 1]) == -1) return;
@@ -242,7 +242,7 @@ con.connect(function (err) {
 								//	gify(`./videos/${e.mal_id}.mp4`, `./gifs/${e.mal_id}.gif`, gif_options, function (err) {
 								//		if (err) throw err;
 								if (guilds_settings[msg.guild.id][1] == "tha") {
-										msg.channel.send({
+									msg.channel.send({
 										//files: [new Discord.Attachment(`./gifs/${e.mal_id}.gif`, `${e.mal_id}.gif`)],
 										embed: {
 											title: `ไงล่ะ! เจอแล้ว ฉันเก่งไหม`,
