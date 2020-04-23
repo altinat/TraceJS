@@ -204,7 +204,6 @@ con.connect(function (err) {
 					if (err) return;
 					img.resize(720, 480).getBase64(Jimp.AUTO, function (e, img64) {
 						if (e) return;
-						var img = document.querySelector("img"); // select image from DOM
 						var canvas = document.createElement("canvas");
 						canvas.width = img.naturalWidth;
 						canvas.height = img.naturalHeight;
