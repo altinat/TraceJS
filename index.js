@@ -43,8 +43,8 @@ con.connect(function (err) {
 			switch (rnd) {
 				case 1:
 					{
-						client.user.setActivity('คนเล่นเจ้า', {
-							type: 'WATCHING'
+						client.user.setActivity('TraceJS 2.3', {
+							type: 'PLAYING'
 						});
 					}
 					break
@@ -222,7 +222,6 @@ con.connect(function (err) {
 								var e = result.docs.sort((a, b) => { // Sort array from highest similarity to lowest
 									return b.similarity - a.similarity
 								})[0];
-								
 								var video_url = `https://media.trace.moe/video/${e.anilist_id}/${encodeURIComponent(e.filename)}?t=${e.at}&token=${e.tokenthumb}`.replace(/[)]/g, '%29')
 								var other_results = result.docs.map((el, i) => {
 									if (e.mal_id != el.mal_id) return `[${el.title_romaji}](https://myanimelist.net/anime/${el.mal_id})`;
