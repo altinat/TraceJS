@@ -197,11 +197,6 @@ con.connect(function (err) {
 				attch = msg.content;
 			}
 			if (attch) {
-				msg.channel.send(`Finding`);
-				setTimeout(() => {
-					// Edit msg 20 seconds later
-					msg.delete();
-				}, 20000);
 				var url = attch.url ? attch.url : attch;
 				var urlToArr = url.toLowerCase().split('.');
 				if (img_formats.indexOf(urlToArr[urlToArr.length - 1]) == -1) return;
@@ -254,7 +249,7 @@ con.connect(function (err) {
 											footer: {
 												icon_url: msg.author.displayAvatarURL,
 												text: `รีเควสโดย ${msg.author.username} \n` +
-												`ความเป็นไปได้: ${e.similarity.toFixed(4) * 100}% \n` +
+												`ความเป็นไปได้: ${e.similarity.toFixed(4)*100.toFixed(4)}% \n` +
 												`ไฟล์: ${e.filename}`
 											},
 											thumbnail: {
