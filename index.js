@@ -43,7 +43,7 @@ con.connect(function (err) {
 			switch (rnd) {
 				case 1:
 					{
-						client.user.setActivity('เวอร์ชัน 0.2.3a', {
+						client.user.setActivity('TraceJS 2.3', {
 							type: 'PLAYING'
 						});
 					}
@@ -249,7 +249,7 @@ con.connect(function (err) {
 											footer: {
 												icon_url: msg.author.displayAvatarURL,
 												text: `รีเควสโดย ${msg.author.username} \n` +
-												`ความเป็นไปได้: ${e.similarity.toFixed(4)*100}% \n` +
+												`ความเป็นไปได้: ${e.similarity.toFixed(4) * 100}% \n` +
 												`ไฟล์: ${e.filename}`
 											},
 											thumbnail: {
