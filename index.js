@@ -43,7 +43,7 @@ con.connect(function (err) {
 			switch (rnd) {
 				case 1:
 					{
-						client.user.setActivity('TraceJS 2.3', {
+						client.user.setActivity('เวอร์ชัน 0.2.3a', {
 							type: 'PLAYING'
 						});
 					}
