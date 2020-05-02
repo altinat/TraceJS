@@ -43,7 +43,7 @@ con.connect(function (err) {
 			switch (rnd) {
 				case 1:
 					{
-						client.user.setActivity('TraceJS 2.3', {
+						client.user.setActivity('เวอร์ชัน 0.2.3a', {
 							type: 'PLAYING'
 						});
 					}
@@ -121,7 +121,7 @@ con.connect(function (err) {
 		client.on('message', (msg) => {
 			if (msg.author.bot) return;
 			if (msg.content.toLowerCase().startsWith('+setlang')) {
-				if (msg.member.hasPermission('KICK_MEMBERS') || msg.author.id == '449924162920906753') {
+				if (msg.member.hasPermission('KICK_MEMBERS') || msg.author.id == '408625576090402826') {
 					var lang = msg.content.split(' ')[1]
 					if (langs.indexOf(lang) > -1) {
 						con.query("UPDATE `guilds` SET lang = '" + lang + "' WHERE guild_id='" + msg.guild.id + "'", (err) => {
@@ -135,7 +135,7 @@ con.connect(function (err) {
 				}
 			}
 			if (msg.content.toLowerCase().startsWith('+setchannel')) {
-				if (msg.member.hasPermission('KICK_MEMBERS') || msg.author.id == '449924162920906753') {
+				if (msg.member.hasPermission('KICK_MEMBERS') || msg.author.id == '408625576090402826') {
 					if (cooldowns[msg.guild.id])
 						return msg.channel.send(
 							`คำสั่งนี้กำลังคูลดาวน์บนเซิร์ฟเวอร์นี้ โปรดรอ **${cooldowns[msg.guild.id]} วินาที**`
@@ -249,7 +249,7 @@ con.connect(function (err) {
 											footer: {
 												icon_url: msg.author.displayAvatarURL,
 												text: `รีเควสโดย ${msg.author.username} \n` +
-												`ความเป็นไปได้: ${e.similarity.toFixed(4)*100.toFixed(4)}% \n` +
+												`ความเป็นไปได้: ${e.similarity.toFixed(4)*100}% \n` +
 												`ไฟล์: ${e.filename}`
 											},
 											thumbnail: {
