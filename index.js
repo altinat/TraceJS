@@ -202,7 +202,7 @@ con.connect(function (err) {
 				if (img_formats.indexOf(urlToArr[urlToArr.length - 1]) == -1) return;
 				Jimp.read(url, function (err, img) {
 					if (err) return;
-					img.getBase64(Jimp.AUTO, function (e, img64) {
+					img.resize(720, 480).getBase64(Jimp.AUTO, function (e, img64) {
 						if (e) return;
 						fetch(`https://trace.moe/api/search`, {
 							method: 'POST',
