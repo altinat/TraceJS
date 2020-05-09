@@ -43,7 +43,7 @@ con.connect(function (err) {
 			switch (rnd) {
 				case 1:
 					{
-						client.user.setActivity('เวอร์ชัน 0.2.3a', {
+						client.user.setActivity('เวอร์ชัน 0.2.3b', {
 							type: 'PLAYING'
 						});
 					}
@@ -55,7 +55,7 @@ con.connect(function (err) {
 						});
 					}
 			}
-		}, 5000)
+		}, 3000)
 	});
 	setInterval(() => { // MYSQL DISCONNECT FIX
 		con.query(`SELECT 1`);
