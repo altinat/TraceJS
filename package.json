@@ -18,7 +18,7 @@
   "author": "Airi",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.2.0",
+    "discord.js": "^11.4.2",
     "jimp": "^0.14.0",
     "mysql": "^2.18.1",
     "node-fetch": "^2.6.0"
