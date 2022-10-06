@@ -1,6 +1,7 @@
 <h3 style="text-align: left;">This bot can help you to find any anime by screenshot.</h3>
 <h1 style="text-align: center;">INSTRUCTION:</h1>
 <p>
+[<img src="https://open.autocode.com/static/images/open.svg?" width="192">](https://open.autocode.com/)
 <h3>Installation: <br></h3>
 1) Create mysql table:  <br>
 CREATE TABLE `guilds` (<br>
